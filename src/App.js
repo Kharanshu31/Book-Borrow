@@ -1,10 +1,13 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+
+import Navigation from "./components/Navigation.js";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello</h1>
+    <div>
+      <Navigation />
+      
     </div>
   );
 }
