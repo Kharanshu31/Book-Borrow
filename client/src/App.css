@@ -2,6 +2,24 @@
   text-align: center;
 }
 
+.navigationContainer {
+  width: 100%;
+  height: 56px;
+  background: black;
+  position: fixed;
+  left:0;
+  top:0;
+}
+
+.navigationTitle {
+  position: relative;
+  bottom: 15px;
+  left: 15px;
+  color: #E0FFFF;
+  font-style: italic;
+}
+
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
