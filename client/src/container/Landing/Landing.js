@@ -1,21 +1,34 @@
-import React from 'react';
+import React,{Component} from 'react';
 import "./Landing.css";
+import axios from 'axios';
 
 import SingleDiv from "./SingleDiv/SingleDiv.js";
 
-function Landing() {
+class Landing extends Component{
 
-  let ar=[];
-  for(let i=0;i<10;i++)
-  {
-    ar.push(<SingleDiv key={i}/>);
+  state={
+    books:[]
   }
 
-  return (
-    <div className="landingContainer">
-    {ar.map(el=>el)}
-    </div>
-  );
+  componentDidMount(){
+    axios.get("http://localhost:5000/book/")
+      .then(response=>{
+        console.log(response.data);
+        this.setState({
+          books:response.data
+        })
+      })
+  }
+
+  render(){
+
+    return (
+      <div className="landingContainer">
+      {this.state.books.map(el=><SingleDiv key={el._id} name={el.name} subject={el.subject} price={el.price}/>)}
+      </div>
+    );
+
+  }
 }
 
 export default Landing;
