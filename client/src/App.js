@@ -1,16 +1,19 @@
-import React from 'react';
+import React,{Fragment} from 'react';
+import { Route, Switch,withRouter} from 'react-router-dom';
 import './App.css';
 
-import Navigation from "./components/Navigation/Navigation.js";
-import Landing from "./container/Landing/Landing.js"
+import Main from "./main";
 
 function App() {
   return (
     <div>
-      <Navigation />
-      <Landing />
+    <Fragment>
+      <Switch>
+        <Route path="/" component={Main}/>
+      </Switch>
+    </Fragment>
     </div>
   );
 }
 
-export default App;
+export default withRouter(App);
