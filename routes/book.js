@@ -6,7 +6,7 @@ const Book=require('../models/book');
 router.route("/").post(async (req,res)=>{
   try {
 
-    console.log(`${req.body.name}\n${req.body.subject}\n${req.body.price}`);
+    //console.log(`${req.body.name}\n${req.body.subject}\n${req.body.price}`);
 
     const newbook=new Book({
       name:req.body.name,
