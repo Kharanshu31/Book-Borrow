@@ -13,11 +13,11 @@ class Landing extends Component{
   componentDidMount(){
     axios.get("http://localhost:5000/book/")
       .then(response=>{
-        console.log(response.data);
+        //console.log(response.data);
         this.setState({
           books:response.data
         })
-      })
+      }).catch(error=>console.log(error.response));
   }
 
   render(){
