@@ -4,6 +4,7 @@ import './App.css';
 
 import Main from "./main";
 import Post from "./components/Post/post.js";
+import Description from "./components/Description/Description.js"
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
     <Fragment>
       <Switch>
         <Route path="/add" component={Post}/>
+        <Route path="/info" component={Description}/>
         <Route path="/" component={Main}/>
       </Switch>
     </Fragment>

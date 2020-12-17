@@ -1,0 +1,17 @@
+.descBox {
+  width: 90%;
+  height: 70%;
+  margin: 2%;
+  border : 2px solid black;
+  display: flex;
+}
+
+.imgbox {
+  width: 50%;
+}
+
+.bookdescimg{
+  width: 35%;
+  /* height: 50%; */
+  padding: 10px;
+}
