@@ -1,7 +1,17 @@
 const express = require("express");
+const fs = require('fs');
 const router = express.Router();
+const multer = require('multer');
 
 const Book=require('../models/book');
+
+const storage = multer.diskStorage({
+    destination: function (req, res, cb) {
+        cb(null, 'uploads/')
+    }
+});
+
+const upload = multer({ storage: storage });
 
 router.route("/").post(async (req,res)=>{
   try {

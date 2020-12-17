@@ -15,3 +15,13 @@
   color: #E0FFFF;
   font-style: italic;
 }
+
+.postLink {
+  position: relative;
+  left: 70%;
+  top:25%;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 1.2rem;
+  text-decoration: none!important;
+}

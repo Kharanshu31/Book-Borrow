@@ -51,6 +51,9 @@ class Post extends Component {
           <input className="postInput" placeholder="Enter book name" onChange={this.handleChangeName}></input>
           <input className="postInput" placeholder="Enter subject" onChange={this.handleChangeSubject}></input>
           <input className="postInput" placeholder="Enter price" onChange={this.handleChangePrice}></input>
+          <input type="file" onChange={this.onFileChange} />
+            <button onClick={this.onFileUpload}>Upload!</button>
+            
           <button onClick={this.submitBook}>Submit</button>
         </div>
       </div>

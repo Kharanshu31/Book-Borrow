@@ -10,6 +10,10 @@ const bookSchema=new Schema({
   },
   price:{
     type:Number
+  },
+  img:{
+     data: Buffer,
+    contentType: String
   }
 })
 

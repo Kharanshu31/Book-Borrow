@@ -9,7 +9,7 @@ function Navigation() {
         <h1 className="navigationTitle">Book-Borrow</h1>
       </div>
 
-      <NavLink style={{color: 'white'}} to="/add">Post</NavLink>
+      <NavLink style={{color: 'white'}} to="/add" className="postLink">Post</NavLink>
     </div>
   );
 }
