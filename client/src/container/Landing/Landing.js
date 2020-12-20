@@ -24,7 +24,7 @@ class Landing extends Component{
 
     return (
       <div className="landingContainer">
-      {this.state.books.map(el=><SingleDiv key={el._id} name={el.name} subject={el.subject} price={el.price}/>)}
+      {this.state.books.map(el=><SingleDiv key={el._id} name={el.name} subject={el.subject} price={el.price} id={el._id}/>)}
       </div>
     );
 

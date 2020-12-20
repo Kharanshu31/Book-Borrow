@@ -45,9 +45,22 @@ router.route("/").get(async (req,res)=>{
 
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("cannot post")
+    res.status(500).send("cannot get")
   }
 
+})
+
+router.route("/find/:id").get(async(req,res)=>{
+  try {
+    const p=req.params.id;
+    //console.log(p);
+    const b=await Book.findById(p);
+    res.json(b);
+
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("cannot find id")
+  }
 })
 
 module.exports=router;
