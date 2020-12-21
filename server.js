@@ -12,6 +12,7 @@ app.use(express.json());
 connectDB();
 
 app.use("/book",require("./routes/book"));
+app.use("/user",require("./routes/bookuser"));
 
 const port=process.env.PORT || 5000;
 

@@ -14,6 +14,10 @@ const bookSchema=new Schema({
   img:{
      data: Buffer,
     contentType: String
+  },
+  user:{
+    type:mongoose.Schema.Types.ObjectID,
+    ref:"Bookuser"
   }
 })
 
