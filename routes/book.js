@@ -4,6 +4,7 @@ const router = express.Router();
 const multer = require('multer');
 
 const Book=require('../models/book');
+const Bookuser = require("../models/bookuser");
 
 const storage = multer.diskStorage({
     destination: function (req, res, cb) {
@@ -21,7 +22,8 @@ router.route("/").post(async (req,res)=>{
     const newbook=new Book({
       name:req.body.name,
       subject:req.body.subject,
-      price:req.body.price
+      price:req.body.price,
+      user:req.body.user
     })
 
     console.log(newbook);
@@ -60,6 +62,19 @@ router.route("/find/:id").get(async(req,res)=>{
   } catch (err) {
     console.error(err.message);
     res.status(500).send("cannot find id")
+  }
+})
+
+router.route("/userfind/:id").get(async(req,res)=>{
+  try {
+    const id=req.params.id;
+
+    const b=await Book.find({user:id})
+
+    res.json(b);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("cannot find user book")
   }
 })
 

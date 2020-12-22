@@ -6,7 +6,21 @@ class Post extends Component {
   state={
       name:'',
       subject:'',
-      price:0
+      price:0,
+      userid:''
+  }
+
+  componentDidMount(){
+    const id=window.localStorage.getItem("_id")
+
+    if(id === null || id.length === 0)
+    {
+      this.setState({userid:''})
+    }
+    else
+    {
+      this.setState({userid:id})
+    }
   }
 
   handleChangeName=(e)=>{
@@ -27,20 +41,28 @@ class Post extends Component {
   submitBook=(e)=>{
     e.preventDefault();
 
-    const item={
-      name:this.state.name,
-      subject:this.state.subject,
-      price:this.state.price
+    if(this.state.userid=='')
+    {
+      alert("Please Register/Login")
     }
+    else
+    {
+      const item={
+        name:this.state.name,
+        subject:this.state.subject,
+        price:this.state.price,
+        user:this.state.userid
+      }
 
-    //console.log(item);
+      //console.log(item);
 
-    axios.post("http://localhost:5000/book/",item)
-      .then(response=>{
-        //console.log(response.data);
-      }).catch(error=>console.log(error.response));
+      axios.post("http://localhost:5000/book/",item)
+        .then(response=>{
+          //console.log(response.data);
+        }).catch(error=>console.log(error.response));
 
-      this.props.history.push("/");
+        this.props.history.push("/");
+    }
   }
 
   render(){
@@ -53,7 +75,7 @@ class Post extends Component {
           <input className="postInput" placeholder="Enter price" onChange={this.handleChangePrice}></input>
           <input type="file" onChange={this.onFileChange} />
             <button onClick={this.onFileUpload}>Upload!</button>
-            
+
           <button onClick={this.submitBook}>Submit</button>
         </div>
       </div>

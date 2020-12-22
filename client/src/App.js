@@ -6,7 +6,8 @@ import Main from "./main";
 import Post from "./components/Post/post.js";
 import Description from "./components/Description/Description.js";
 import Reg from "./components/Registration/reg.js";
-import Login from "./components/Login/login.js"
+import Login from "./components/Login/login.js";
+import Mybook from "./components/MyBooks/mybooks.js";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/info" component={Description}/>
         <Route path="/reg" component={Reg}/>
         <Route path="/login" component={Login}/>
+        <Route path="/mybook" component={Mybook}/>
         <Route path="/" component={Main}/>
       </Switch>
     </Fragment>
