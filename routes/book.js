@@ -1,4 +1,5 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const fs = require('fs');
 const router = express.Router();
 const multer = require('multer');
@@ -75,6 +76,41 @@ router.route("/userfind/:id").get(async(req,res)=>{
   } catch (err) {
     console.error(err.message);
     res.status(500).send("cannot find user book")
+  }
+})
+
+router.route("/edit/:id").post(async(req,res)=>{
+  try{
+    const id=req.params.id;
+    //console.log(req.body);
+
+    const b=await Book.updateMany({_id:id},{$set:{
+      name:req.body.name,
+      subject:req.body.subject,
+      price:req.body.price
+    }})
+
+    res.json(b);
+
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("cannot edit")
+  }
+
+})
+
+router.route("/remove/:id").delete(async(req,res)=>{
+  try {
+    const id=req.params.id;
+
+    const b=await Book.findById(id);
+    // console.log(b);
+    await b.remove();
+    res.json("Succesfully deleted");
+
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("cannot edit")
   }
 })
 
