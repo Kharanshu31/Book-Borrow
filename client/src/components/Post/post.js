@@ -41,7 +41,7 @@ class Post extends Component {
   submitBook=(e)=>{
     e.preventDefault();
 
-    if(this.state.userid=='')
+    if(this.state.userid==='')
     {
       alert("Please Register/Login")
     }

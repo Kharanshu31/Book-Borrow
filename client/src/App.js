@@ -8,6 +8,7 @@ import Description from "./components/Description/Description.js";
 import Reg from "./components/Registration/reg.js";
 import Login from "./components/Login/login.js";
 import Mybook from "./components/MyBooks/mybooks.js";
+import Wishlist from "./components/Wishlist/wishlist.js";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/reg" component={Reg}/>
         <Route path="/login" component={Login}/>
         <Route path="/mybook" component={Mybook}/>
+        <Route path="/wish" component={Wishlist}/>
         <Route path="/" component={Main}/>
       </Switch>
     </Fragment>

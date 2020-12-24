@@ -48,6 +48,7 @@ class Navigation extends Component {
 
       <NavLink style={{color: 'white'}} to="/add" className="postLink">Post</NavLink>
       <NavLink style={{color: 'white'}} to="/mybook" className="postLink">MyBooks</NavLink>
+      <NavLink style={{color: 'white'}} to="/wish" className="postLink">Wishlist</NavLink>
       {this.state.isLoggedin ? (authLinks) : (guestLinks) }
     </div>
   );

@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Bookuser = require("../models/bookuser");
+const Book=require('../models/book');
 
 router.route("/").get((req,res)=>{
   Bookuser.find()
@@ -70,6 +71,22 @@ router.route("/add").post((req,res)=>{
   newBookuser.save()
     .then(()=>res.json(newBookuser))
     .catch(err=>res.status(400).json("Error:" + err));
+})
+
+router.route("/wish/:bid/:uid").post(async(req,res)=>{
+  try {
+    //console.log(req.params.bid);
+    //console.log(req.params.uid);
+    const b=await Bookuser.updateOne({_id:req.params.uid},{$addToSet:{
+      "wishlist":req.params.bid
+    }})
+
+    res.json(b);
+
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("cannot add to wishlist")
+  }
 })
 
 module.exports = router;
