@@ -6,7 +6,8 @@ import axios from 'axios';
 class Description extends Component {
 
   state={
-    book:[]
+    book:[],
+    p:0
   }
 
   componentDidMount(){
@@ -22,7 +23,7 @@ class Description extends Component {
       axios.get(`http://localhost:5000/user/getUser?id=${u}`)
         .then(response=>{
           // console.log(response.data.wishlist);
-          
+
           response.data.wishlist.map(el=>{
             return (
               axios.get(`http://localhost:5000/book/find/${el}`)
@@ -35,6 +36,10 @@ class Description extends Component {
                       ]
                   }))
 
+                  this.setState((prevstate)=>({
+                    p:this.state.p+res.data.price
+                  }))
+
                 })
             )
           })
@@ -43,10 +48,20 @@ class Description extends Component {
     }
   }
 
+  removeWishBook=(bid)=>{
+    const u=window.localStorage.getItem("_id");
+    axios.post(`http://localhost:5000/user/removewish/${bid}/${u}`)
+      .then(response=>{
+        alert("Successfully deleted from wishlist")
+        window.location.href="/wish"
+      }).catch(error=>console.log(error.response));
+  }
+
   render(){
     return (
       <div>
       <h1 style={{textAlign: 'center',fontStyle: 'italic'}}>My Wishlist</h1>
+      <h3 style={{textAlign: 'center'}}>Your current price is {this.state.p}</h3>
       {this.state.book.map(el=>{
         return (
           <div key={el._id} className="descBox">
@@ -58,6 +73,7 @@ class Description extends Component {
               <h2>Subject : {el.subject}</h2>
               <h2>Price : {el.price}</h2>
               <h2>Uploaded By : Kharanshu</h2>
+              <button onClick={()=>this.removeWishBook(el._id)}>Remove</button>
             </div>
           </div>
         )

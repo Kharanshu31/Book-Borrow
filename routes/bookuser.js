@@ -89,4 +89,17 @@ router.route("/wish/:bid/:uid").post(async(req,res)=>{
   }
 })
 
+router.route("/removewish/:bid/:uid").post(async(req,res)=>{
+  try {
+    const b=await Bookuser.updateOne({_id:req.params.uid},{$pull:{
+      "wishlist":req.params.bid
+    }})
+
+    res.json(b);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("cannot remove from wishlist")
+  }
+})
+
 module.exports = router;
