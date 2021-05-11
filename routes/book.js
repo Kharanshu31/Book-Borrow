@@ -2,18 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const fs = require('fs');
 const router = express.Router();
-const multer = require('multer');
 
 const Book=require('../models/book');
 const Bookuser = require("../models/bookuser");
 
-const storage = multer.diskStorage({
-    destination: function (req, res, cb) {
-        cb(null, 'uploads/')
-    }
-});
-
-const upload = multer({ storage: storage });
 
 router.route("/").post(async (req,res)=>{
   try {
