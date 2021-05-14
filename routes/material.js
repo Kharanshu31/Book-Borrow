@@ -66,7 +66,7 @@ router.get('/:id', async (req, res) => {
       return res.json('No Book Found!');
     }
 
-    const materialArray = await Material.find({ book: bookid });
+    const materialArray = await Material.findOne({ book: bookid });
 
     console.log('backend material array ---->.>', materialArray);
 

@@ -15,6 +15,8 @@ app.use("/book",require("./routes/book"));
 app.use("/user",require("./routes/bookuser"));
 app.use("/material",require("./routes/material"));
 
+app.use(express.static(path.join(__dirname, 'uploads/book/material')));
+
 const port=process.env.PORT || 5000;
 
 app.listen(port,()=>console.log(`Server is running at ${port}`));
