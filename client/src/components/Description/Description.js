@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import book from "../../assets/book.jpg";
+//import book from "../../assets/book.jpg";
 import "./Description.css";
 import axios from 'axios';
 
@@ -8,7 +8,8 @@ class Description extends Component {
   state={
     book:"",
     bid:"",
-    uid:""
+    uid:"",
+    bookimage:''
   }
 
   componentDidMount(){
@@ -16,7 +17,7 @@ class Description extends Component {
     const search = this.props.location.search;
     const params = new URLSearchParams(search);
     const id = params.get('id');
-    console.log(id);
+    //console.log(id);
     this.setState({bid:id});
     const u=window.localStorage.getItem("_id")
     if(u===null)
@@ -35,6 +36,22 @@ class Description extends Component {
           book:response.data
         })
       }).catch(error=>console.log(error.response));
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      };
+
+      axios.get(`http://localhost:5000/material/${id}`,config)
+        .then(response=>{
+            //console.log(response.data);
+            if(response.data!=='No Book Found!')
+            {
+                this.setState({bookimage:response.data.material});
+            }
+        }).catch(error=>console.log(error.response));
+
   }
 
   onAddToWishlist=(e)=>{
@@ -53,12 +70,15 @@ class Description extends Component {
   }
 
   render(){
+
+    const url=`http://localhost:5000/${this.state.bookimage}`;
+
     return (
       <div>
       <h1 style={{textAlign: 'center',fontStyle: 'italic'}}>Book Details</h1>
       <div className="descBox">
         <div className="imgbox">
-          <img src={book} alt="Book" className="bookdescimg"/>
+          <img src={url} alt="Book" className="bookdescimg"/>
         </div>
         <div>
           <h2>Name : {this.state.book.name}</h2>

@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import "./SingleDiv.css";
-import book from "../../../../src/assets/book.jpg";
+//import book from "../../../../src/assets/book.jpg";
 import axios from 'axios';
 // import Description from "../../../../src/components/Description/Description.js"
 
